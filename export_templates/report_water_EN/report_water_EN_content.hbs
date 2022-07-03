@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<style>
+		@page {
+			size: A4 portrait;
+			margin: 30px 30px 10px 30px;
+		}
+
+		body {
+			font-family: "DilleniaUPC";
+			font-size: 16px;
+			padding: 0px;
+		}
+
+		.full-width {
+			width: 100%;
+		}
+
+		.label {
+			font-weight: bold;
+		}
+
+		.font-26 {
+			font-size: 26px;
+		}
+
+		.font-10 {
+			font-size: 10px;
+		}
+
+		.bold {
+			font-weight: bold;
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		.text-top {
+			vertical-align: top;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table.table-result th,
+		table.table-result td {
+			font-weight: bold;
+			border: 1px solid #000;
+		}
+
+		.header-container {
+			height: 100px;
+		}
+
+		.content-container {
+			height: 925px;
+		}
+
+		.footer-container {
+			height: 40px;
+			vertical-align: bottom;
+		}
+
+		.page-gap {
+			height: 8px;
+		}
+
+		.sample-condition {
+			height: 100px;
+		}
+	</style>
+</head>
+
+<body>
+
+	{{#each pages as | page |}}
+
+	{{#unless isFirstPage}}
+	<div class="page-gap"></div>
+	{{/unless}}
+
+	<div class="header-container">
+		<table cellpadding="0" cellspacing="0" class="full-width">
+			<tr>
+				<td width="78%">
+
+				</td>
+				<td width="12%" class="label">
+					Report No.
+				</td>
+				<td width="10%">
+					: {{page.header.reportNo}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+				</td>
+				<td class="label">
+					Sample ID. No.
+				</td>
+				<td>
+					: {{page.header.sampleNo}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+				</td>
+				<td class="label">
+					Issue Date
+				</td>
+				<td width="10%">
+					: {{page.header.issueDate}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+				</td>
+				<td class="label">
+					Page
+				</td>
+				<td>
+					: {{page.pageNumber}} of {{../totalPage}}
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div class="content-container">
+		<div class="text-center font-26 bold full-width">
+			TEST REPORT
+		</div>
+
+		<br>
+
+		<table cellpadding="0" cellspacing="0" class="full-width">
+			<tr>
+				<td width="20%" class="label">
+					Customer Name
+				</td>
+				<td width="58%">
+					: {{header.customerName}}
+				</td>
+				<td width="12%" class="label">
+					Test Date
+				</td>
+				<td width="10%">
+					: {{header.testDate}}
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Address
+				</td>
+				<td>
+					: {{header.address}}
+				</td>
+				<td class="label">
+					Completion Date
+				</td>
+				<td>
+					: {{header.completionDate}}
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Sample Description
+				</td>
+				<td>
+					: {{header.sampleDescriptionEN}}
+				</td>
+				<td class="label">
+				</td>
+				<td>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Sample Condition
+				</td>
+				<td class="text-top">
+					: Sample is contained in
+				</td>
+				<td class="label">
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+				</td>
+				<td class="text-top">
+					<div class="sample-condition" style="padding-left: 5px;">
+						{{#each header.sampleConditions}}
+						<div>- {{this}}</div>
+						{{/each}}
+					</div>
+				</td>
+				<td class="label">
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Collected From
+				</td>
+				<td>
+					: {{header.collectedFrom}}
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Collected By
+				</td>
+				<td>
+					: {{header.collectedBy}}
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Laboratory Name
+				</td>
+				<td>
+					: {{header.laboratoryName}}
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Collected Date / Time
+				</td>
+				<td>
+					: {{header.collectedDateTime}}
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label">
+					Received Date / Time
+				</td>
+				<td>
+					: {{header.receivedDateTime}}
+				</td>
+				<td class="label">
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+		</table>
+
+		<br>
+
+		<div class="bold">
+			TEST RESULT (S)
+		</div>
+
+		<table class="full-width table-result">
+			<tr>
+				<th width="20%" colspan="2">
+					Test Item
+				</th>
+				<th width="17%">
+					Test Method
+				</th>
+				<th width="5%">
+					LOD
+				</th>
+				<th width="5%">
+					LOQ
+				</th>
+				<th width="10%">
+					Unit
+				</th>
+				<th width="15%">
+					Result
+				</th>
+				<th width="15%">
+					Maximum<br>Permitted<br>Value
+				</th>
+				<th width="10%">
+					Reference
+				</th>
+			</tr>
+
+			{{#each page.content.items}}
+			<tr>
+				<td>
+					{{parameterName}}
+				</td>
+				<td align="center" width="3%">
+					{{certified}}
+				</td>
+				<td align="center">
+					{{standards}}
+				</td>
+				<td align="center">
+					{{loq}}
+				</td>
+				<td align="center">
+					{{lod}}
+				</td>
+				<td align="center">
+					{{unit}}
+				</td>
+				<td align="center">
+					{{result}}
+				</td>
+				<td align="center">
+					{{standardLimit}}
+				</td>
+				<td align="center">
+					{{reference}}
+				</td>
+			</tr>
+			{{/each}}
+
+		</table>
+
+		{{#if page.isLastPage}}
+
+		<table class="full-width">
+			<tr>
+				<td width="7%" class="bold">
+					Remark 1
+				</td>
+				<td width="2%"></td>
+				<td></td>
+			</tr>
+
+			{{#each page.remarks}}
+			<tr>
+				<td></td>
+				<td valign="top">
+					{{no}}.
+				</td>
+				<td>
+					{{detail}}
+				</td>
+			</tr>
+			{{/each}}
+
+			<tr>
+				<td class="bold">
+					Remark 2
+				</td>
+				<td width="2%"></td>
+				<td></td>
+			</tr>
+
+			{{#each page.remarks2}}
+			<tr>
+				<td></td>
+				<td valign="top">
+					{{no}}.
+				</td>
+				<td>
+					{{detail}}
+				</td>
+			</tr>
+			{{/each}}
+		</table>
+
+		<table class="full-width">
+			<tr>
+				<td width="5%" class="bold">
+					Reference
+				</td>
+				<td width="2%"></td>
+				<td></td>
+			</tr>
+
+			{{#each page.references}}
+			<tr>
+				<td></td>
+				<td valign="top">
+					{{no}}.
+				</td>
+				<td>
+					{{detail}}
+				</td>
+			</tr>
+			{{/each}}
+		</table>
+
+		<br><br><br>
+		<table class="full-width">
+			<tr>
+				<td width="50%" align="center" class="bold">
+					Approved
+					By.............................................................................................
+				</td>
+				<td width="50%" align="center" class="bold">
+					Approved
+					By.............................................................................................
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+				</td>
+				<td align="center">
+					(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+				</td>
+			</tr>
+		</table>
+		{{/if}}
+
+	</div>
+
+	<div class="footer-container">
+		<div class="font-10">
+			The above analysis is only for preliminary test result. .This is not an official report.
+			<br>
+			The preliminary test result is only for transmission by facsimile or electronic mail.
+			<br>
+			REC-0025-002 (Issue No.1, Revision No. 2, Effective Date : Jan 1, 2015)
+		</div>
+	</div>
+
+	{{/each}}
+</body>
+
+</html>

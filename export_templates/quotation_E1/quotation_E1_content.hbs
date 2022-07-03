@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  
+  <style>
+	body {
+		font-family: "Browallia New";
+		padding: 0px 40px 0px 40px;
+	}
+	
+	table.table-data {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	table.table-data th {
+		background-color: #c6e0b4;
+		font-size: 14px;
+		border: 1px solid #000;
+	}
+	
+	table.table-data td {
+		padding: 2px;
+		border: 1px solid #000;
+	}
+	
+	.sample-type {
+		font-size: 15px;
+		font-weight: bold;
+		font-style: italic;
+	}
+	
+	.sample-type-value {
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+	tr.row-item {
+		font-size: 14px;
+	}
+	
+	td.col-summary {
+		font-weight: bold;
+		font-size: 14px;
+	}
+	
+	td.col-empty {
+		background-color: none;
+		border: 0px !important;
+	}
+	
+	.remark-header {
+		color: #3333dd;
+		font-size: 14px;
+		font-style: italic;
+		vertical-align: top;
+	}
+	
+	.full-width {
+		width: 100%;
+	}
+	
+	.col-approve {
+		background-color: #c6e0b4;
+		color: #0000ee;
+		font-weight: bold;
+		font-size: 14px;
+		font-style: italic;
+		padding: 4px;
+	}
+	
+	.col-footer {
+		color: #3333dd;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.font-11 {
+		font-size: 11px;
+	}
+	
+	.font-15 {
+		font-size: 15px;
+	}
+	
+	.bold {
+		font-weight: bold;
+	}
+	
+	.italic {
+		font-style: italic;
+	}
+	
+	.hilight {
+		background-color: #ffff00;
+	}
+	
+	.hilight-grand {
+		color: #0000ff;
+	}
+	
+	.text-top {
+		vertical-align: top;
+	}
+  
+  
+  </style>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" class="table-data">
+	<tr>
+		<th>SAMPLING POINT</th>
+		<th width="20%" colspan="2">TEST ITEM(S)</th>
+		<th width="18%">ANALYSIS METHOD</th>
+		<th width="15%">Unit Price/Sample<br>(Baht / Sample)</th>
+		<th width="10%">Sampling<br>Point(s)</th>
+		<th width="10%">Amount<br>(Baht)</th>
+	</tr>
+	
+	{{#each samples as | sample |}}
+	<tr>
+		<td colspan="7" class="sample-type">
+			TYPE OF SAMPLE : {{sampleName}}
+		</td>
+	</tr>
+	
+	{{#each sample.subparameters}}
+	<tr class="row-item">
+		<td class="font-15 bold">
+			{{sampleName}}
+		</td>
+		<td>
+			{{parameterName}}
+		</td>
+		<td align="center" width="3%">
+			{{certified}}
+		</td>
+		<td>
+			{{standards}}
+		</td>
+		<td align="right">
+			{{price}}
+		</td>
+		<td align="right">
+			{{qty}}
+		</td>
+		<td align="right">
+			{{amount}}
+		</td>
+	</tr>
+	{{/each}}
+	
+	{{/each}}
+	
+	<tr class="row-summary">
+		<td colspan="4" class="col-empty">
+			
+		</td>
+		<td colspan="2" class="col-summary">
+			Total
+		</td>
+		<td colspan="2" align="right" class="col-summary">
+			{{total}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary-hilight">
+		<td colspan="4" class="col-empty">
+			
+		</td>
+		<td colspan="2"class="col-summary hilight">
+			Special Discount
+		</td>
+		<td colspan="2" align="right" class="col-summary hilight">
+			{{specialDiscount}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary-hilight">
+		<td colspan="4" class="col-empty">
+			
+		</td>
+		<td colspan="2"class="col-summary hilight">
+			Packing Fee
+		</td>
+		<td colspan="2" align="right" class="col-summary hilight">
+			{{packageFee}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary">
+		<td colspan="4" class="col-empty">
+			
+		</td>
+		<td colspan="2"class="col-summary">
+			Sub Total
+		</td>
+		<td colspan="2" align="right" class="col-summary">
+			{{subTotal}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary">
+		<td colspan="4" class="col-empty">
+			
+		</td>
+		<td colspan="2"class="col-summary">
+			VAT 7%
+		</td>
+		<td colspan="2" align="right" class="col-summary">
+			{{vat}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary">
+		<td colspan="4" class="col-empty">
+			<div class="remark-header">Remark 1</div>
+		</td>
+		<td colspan="2" class="col-summary hilight-grand">
+			Grand Total
+		</td>
+		<td align="right" class="col-summary hilight-grand">
+			{{grand}}
+		</td>
+	</tr>
+	
+</table>
+
+<table class="full-width">
+	{{#each remarks as | remark |}}
+	<tr>
+		<td width="8%"></td>
+		<td width="2%" valign="top" class="font-14">
+			{{no}}. 
+		</td>
+		<td class="font-14">
+			{{detail}}
+		</td>
+	<tr>
+	{{/each}}
+
+	<tr>
+		<td>
+			<div class="remark-header">Remark 2</div>
+		</td>
+		<td class="font-14">
+		</td>
+	<tr>
+
+	{{#each remarks2 as | remark2 |}}
+	<tr>
+		<td></td>
+		<td class="font-14" valign="top">
+			 {{no}}. 
+		</td>
+		<td class="font-14">
+			 {{detail}}
+		</td>
+	<tr>
+	{{/each}}
+</table>
+
+<br><br>
+
+<table class="full-width">
+	<tr>
+		<td width="50%" align="center" class="font-14 text-top">
+			Proposed by ....................................................................
+			<br>
+			( คุณชุลีกร ศรีตุลา )
+			<br>
+			(Ms.Chuleekorn  Sritula)
+			<br>
+			<div class="bold italic">M.P.084-3619456</div>
+			<div class="bold italic">Email : chuleekorns@chemlabgroup.com</div>
+		</td>
+		<td width="50%" align="center" class="font-14 text-top">
+			Approved by ....................................................................
+			<br>
+			(คุณปราณี คุณาเวชกิจ)
+			<br>
+			(Ms. Pranee Kunavetchakit)
+			<div class="bold italic">Business Development Manager</div>
+			<div></div>
+		</td>
+	<tr>
+</table>
+
+<br>
+
+<table class="full-width">
+	<tr>
+		<td class="col-approve" align="center">
+			CUSTOMER CONFIRMED & APPROVED
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			Please sign below to confirm and approve the above quotation.  Returned back  via fax no. 0-2719-6483
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     Authorizer Signature.....................................................................................................
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     (.................................................................)
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     Position ..................................................Date ........./........../.........
+		</td>
+	<tr>
+</table>
+</body>
+</html>

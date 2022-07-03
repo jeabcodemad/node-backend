@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  
+  <style>
+	body {
+		font-family: "Browallia New";
+		padding: 0px 40px 0px 40px;
+	}
+	
+	table.table-data {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	table.table-data th {
+		background-color: #c6e0b4;
+		font-size: 14px;
+		border: 1px solid #000;
+	}
+	
+	table.table-data td {
+		padding: 2px;
+		border: 1px solid #000;
+	}
+	
+	.sample-type {
+		font-size: 15px;
+		font-weight: bold;
+		font-style: italic;
+	}
+	
+	.sample-type-value {
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+	tr.row-item {
+		font-size: 14px;
+	}
+	
+	td.col-summary {
+		background-color: #c6e0b4;
+		color: #0000ee;
+		font-weight: bold;
+		font-size: 14px;
+	}
+	
+	td.col-empty {
+		background-color: none;
+		border: 0px !important;
+	}
+	
+	.remark-header {
+		color: #3333dd;
+		font-size: 14px;
+		font-style: italic;
+		vertical-align: top;
+	}
+	
+	.full-width {
+		width: 100%;
+	}
+	
+	.col-approve {
+		background-color: #c6e0b4;
+		color: #0000ee;
+		font-weight: bold;
+		font-size: 14px;
+		font-style: italic;
+		padding: 4px;
+	}
+	
+	.col-footer {
+		color: #3333dd;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.font-11 {
+		font-size: 11px;
+	}
+  
+  
+  </style>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" class="table-data">
+	<tr>
+		<th width="7%">No.</th>
+		<th width="20%" colspan="2">TEST ITEM(S)</th>
+		<th width="17%">ANALYSIS METHOD</th>
+		<th width="7%">LOD</th>
+		<th width="7%">LOQ</th>
+		<th width="18%">Units</th>
+		<th width="7%">Unit Price<br>(Baht/Sample)</th>
+		<th width="7%">Qty.</th>
+		<th width="7%">Amount<br>(Baht)</th>
+	</tr>
+	
+	{{#each samples as | sample |}}
+	<tr>
+		<td colspan="10" class="sample-type">
+			Type of Samples : {{sampleName}}
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="10" class="sample-type-value">
+			SAMPLE DESCRIPTION  : {{sampleDescription}}
+		</td>
+	</tr>
+	
+	{{#each sample.parameters}}
+	<tr class="row-item">
+		<td align="center">
+			{{no}}
+		</td>
+		<td>
+			{{parameterName}}
+		</td>
+		<td align="center" width="3%">
+			{{certified}}
+		</td>
+		<td>
+			{{standards}}
+		</td>
+		<td align="right">
+			{{lod}}
+		</td>
+		<td align="right">
+			{{loq}}
+		</td>
+		<td align="right">
+			{{unit}}
+		</td>
+		<td align="right">
+			{{price}}
+		</td>
+		<td align="right">
+			{{qty}}
+		</td>
+		<td align="right">
+			{{amount}}
+		</td>
+	</tr>
+	{{/each}}
+	
+	{{/each}}
+	
+	<tr class="row-summary">
+		<td colspan="7" class="col-empty">
+			
+		</td>
+		<td colspan="2" class="col-summary">
+			Total
+		</td>
+		<td colspan="2" align="right" class="col-summary">
+			{{total}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary">
+		<td colspan="7" class="col-empty">
+			
+		</td>
+		<td colspan="2"class="col-summary">
+			VAT 7%
+		</td>
+		<td colspan="2" align="right" class="col-summary">
+			{{vat}}
+		</td>
+	</tr>
+	
+	<tr class="row-summary">
+		<td colspan="7" class="col-empty">
+			<div class="remark-header">Remark 1</div>
+		</td>
+		<td colspan="2" class="col-summary">
+			Grand Total
+		</td>
+		<td align="right" class="col-summary">
+			{{grandTotal}}
+		</td>
+	</tr>
+	
+</table>
+
+<table class="full-width">
+	{{#each remarks as | remark |}}
+	<tr>
+		<td width="8%"></td>
+		<td width="2%" valign="top" class="font-14">
+			{{no}}. 
+		</td>
+		<td class="font-14">
+			{{detail}}
+		</td>
+	<tr>
+	{{/each}}
+
+	<tr>
+		<td>
+			<div class="remark-header">Remark 2</div>
+		</td>
+		<td class="font-14">
+		</td>
+	<tr>
+
+	{{#each remarks2 as | remark2 |}}
+	<tr>
+		<td></td>
+		<td class="font-14" valign="top">
+			 {{no}}. 
+		</td>
+		<td class="font-14">
+			 {{detail}}
+		</td>
+	<tr>
+	{{/each}}
+</table>
+
+<br><br>
+
+<table class="full-width">
+	<tr>
+		<td width="50%" align="center" class="font-14 bold">
+			Proposed by ....................................................................
+			<br>
+			(.................................................................)
+			<br>
+			(.................................................................)
+			<br>
+			(.................................................................)
+		</td>
+		<td width="50%" align="center" class="font-14">
+			Approved by ....................................................................
+			<br>
+			(คุณปราณี คุณาเวชกิจ)
+			<br>
+			(Ms. Pranee Kunavetchakit)
+			<div class="bold">Business Development Manager</div>
+		</td>
+	<tr>
+</table>
+
+<br>
+
+<table class="full-width">
+	<tr>
+		<td class="col-approve" align="center">
+			CUSTOMER CONFIRMED & APPROVED
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			Please sign below to confirm and approve the above quotation.  Returned back  via fax no. 0-2719-6483
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     Authorizer Signature.....................................................................................................
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     (.................................................................)
+		</td>
+	<tr>
+	<tr>
+		<td class="font-14 bold" align="center">
+			     Position ..................................................Date ........./........../.........
+		</td>
+	<tr>
+</table>
+
+
+</body>
+</html>
